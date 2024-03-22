@@ -41,9 +41,16 @@ async function main() {
     },
   });
 
-  kb.loadSprite("ground", "tiles/Tileset_10x.png", {
-    sliceX: 4,
-    sliceY: 3,
+  kb.loadSprite("ground", "tiles/Tileset_Cropped_10x.png", {
+    sliceX: 2,
+    sliceY: 1,
+    anims: {
+      move: {
+        from: 0,
+        to: 1,
+        loop: true,
+      },
+    },
   });
 
   kb.loadSprite("hunter", "sprites/Hunter_10x.png", {
@@ -88,7 +95,8 @@ async function main() {
         tiled: true,
         width: kb.width(),
         height: FLOOR_HEIGHT,
-        frame: 1,
+        frame: 0,
+        anim: "move",
       }),
       kb.area(),
       kb.outline(1),
@@ -102,7 +110,7 @@ async function main() {
         kb.sprite("hunter"),
         kb.pos(kb.width(), kb.height() - FLOOR_HEIGHT * 3 - 16),
         kb.rotate(0),
-        kb.area({ scale: kb.vec2(0.7, 1), offset: kb.vec2(25, 2) }),
+        kb.area({ scale: kb.vec2(0.7, 1), offset: kb.vec2(25, 0) }),
         kb.anchor("botleft"),
         kb.body(),
         kb.offscreen({ destroy: true }),
@@ -194,7 +202,7 @@ async function main() {
     });
   });
 
-  kb.go("gameover");
+  kb.go("game");
 }
 
 main();
