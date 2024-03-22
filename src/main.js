@@ -15,6 +15,7 @@ async function main() {
   kb.volume(0.5);
 
   kb.loadSound("oof", "sounds/oof.mp3");
+  kb.loadSound("jump", "sounds/jump.wav");
 
   kb.loadSprite("dodo", "sprites/Dodo_10x.png", {
     sliceX: 4,
@@ -49,6 +50,7 @@ async function main() {
         from: 0,
         to: 1,
         loop: true,
+        speed: 5,
       },
     },
   });
@@ -74,7 +76,7 @@ async function main() {
     let score = 0;
     let time = 0;
 
-    kb.setGravity(800);
+    kb.setGravity(920);
 
     const player = kb.add([
       kb.sprite("dodo"),
@@ -157,6 +159,8 @@ async function main() {
         player.doubleJump(JUMP_FORCE * 0.8);
         player.play("jump");
       }
+
+      kb.play("jump");
     });
 
     const scoreLabel = kb.add([
